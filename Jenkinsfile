@@ -30,7 +30,7 @@ pipeline {
                   )
                 ]) {
                     sh '''
-                      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_PASSWORD --password-stdin"
+                      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_PASSWORD" --password-stdin
 
                       docker push faizjs/jenkins-testing:"${BUILD_NUMBER}"
 
