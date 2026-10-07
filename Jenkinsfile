@@ -17,7 +17,7 @@ pipeline {
                 //   credentialsId: "github-credentials"
                 // )
                 scripts {
-                    checkout("https://github.com/Faiz-js/jenkins-implementation", "main", "github-credentials")
+                    checkout_code("https://github.com/Faiz-js/jenkins-implementation", "main", "github-credentials")
                   }
               }
           }
