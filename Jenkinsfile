@@ -1,6 +1,11 @@
 pipeline {
     agent any;
 
+    environment {
+        DOCKER_IMAGE = "faizjs/jenkins-testing",
+        DOCKER_TAG = "${BUILD_NUMBER}"
+      }
+
     stages {
         stage("Checkout") {
             steps {
@@ -15,7 +20,7 @@ pipeline {
         stage("Build") {
             steps {
                 sh '''
-                  docker build -t faizjs/jenkins-testing:${BUILD_NUMBER} .
+                  docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
                 '''
               }
           }
@@ -32,7 +37,7 @@ pipeline {
                     sh '''
                       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-                      docker push faizjs/jenkins-testing:"${BUILD_NUMBER}"
+                      docker push $DOCKER_IMAGE:$DOCKER_TAG
 
                       docker logout
                     '''
