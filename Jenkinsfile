@@ -1,3 +1,4 @@
+@Library("Shared") _
 pipeline {
     agent any;
 
@@ -9,19 +10,25 @@ pipeline {
     stages {
         stage("Checkout") {
             steps {
-                git(
-                  url: "https://github.com/Faiz-js/jenkins-implementation",
-                  branch: "main",
-                  credentialsId: "github-credentials"
-                )
+                // git(
+                //   url: "https://github.com/Faiz-js/jenkins-implementation",
+                //   branch: "main",
+                //   credentialsId: "github-credentials"
+                // )
+                scripts {
+                    checkout("https://github.com/Faiz-js/jenkins-implementation", "main", "github-credentials")
+                  }
               }
           }
 
         stage("Build") {
             steps {
-                sh '''
-                  docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
-                '''
+                // sh '''
+                //   docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+                // '''
+                scripts {
+                    docker_build(env.DOCKER_IMAGE, env.DOCKER_TAG)
+                  } 
               }
           }
 
