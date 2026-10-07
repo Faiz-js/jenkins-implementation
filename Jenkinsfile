@@ -2,7 +2,7 @@ pipeline {
     agent any;
 
     environment {
-        DOCKER_IMAGE = "faizjs/jenkins-testing",
+        DOCKER_IMAGE = "faizjs/jenkins-testing"
         DOCKER_TAG = "${BUILD_NUMBER}"
       }
 
