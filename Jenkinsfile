@@ -16,7 +16,7 @@ pipeline {
                 //   branch: "main",
                 //   credentialsId: "github-credentials"
                 // )
-                scripts {
+                script {
                     checkout_code("https://github.com/Faiz-js/jenkins-implementation", "main", "github-credentials")
                   }
               }
@@ -27,7 +27,7 @@ pipeline {
                 // sh '''
                 //   docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
                 // '''
-                scripts {
+                script {
                     docker_build(env.DOCKER_IMAGE, env.DOCKER_TAG)
                   } 
               }
